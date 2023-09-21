@@ -11,8 +11,7 @@ namespace NbPremier
         static void Main(string[] args)
         {
 
-        }
-			
+        }		
     }
 }
 
