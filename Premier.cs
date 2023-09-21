@@ -2,7 +2,8 @@
 
 public static class Premier
 {
-	public static CibleEratosthene()
+
+	public static CribleEratosthene()
 	{
 
 	}
