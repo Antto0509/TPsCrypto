@@ -59,7 +59,7 @@ public static class Premier
         for (int i = 1; i <= n; i++)
         {
             listeEntiers[i - 1] = i;
-            Console.WriteLine(i);
+            //Console.WriteLine(i);
             nbDiviseurs = 0;
             for (int j = 1; j <= n; j++)
             {
@@ -78,10 +78,10 @@ public static class Premier
                 listeBool[i - 1] = false;
             }
         }
-        for (int k = 0; k < n; k++)
+        /*for (int k = 0; k < n; k++)
         {
             Console.WriteLine(listeBool[k]);
-        }
+        }*/
 
         return listeBool;
     }
@@ -163,19 +163,19 @@ public static class Premier
 
         facteurs.Add(n);
 
-        while (n >= 1)
+        while (n != 1)
         {
             if (n % p == 0)
             {
                 facteurs.Add(p);
-                while(n%p == 0)
+                while(n % p == 0)
                 {
                     expo++;
                     n = n / p;
                 }
                 exposants.Add(expo);
             }
-            
+
             while (tab[++p] != true) {}
         }
 
