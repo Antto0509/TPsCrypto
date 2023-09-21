@@ -20,7 +20,7 @@ public static class Premier
 
             for (int j = 1; j <= Math.Sqrt(n); j++)
             {
-				if((i%j == 0) and i!= 1)
+				if((i%j == 0) && (i!= 1))
 				{
 					nbDiviseurs++;
 				}
