@@ -14,13 +14,13 @@ public static class Premier
 		bool[] listeBiffe = new bool[n];
 		for (int i = 1; i <= n; i++)
 		{
-			listeEntiers[i] = i;
+			listeEntiers[i-1] = i;
 			Console.WriteLine(i);
 			nbDiviseurs = 0;
 
             for (int j = 1; j <= Math.Sqrt(n); j++)
             {
-				if((i%j == 0) and i!= 1)
+				if((i%j == 0) && (i!= 1))
 				{
 					nbDiviseurs++;
 				}
