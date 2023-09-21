@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Premier
+public static class Premier
 {
 	public Premier()
 	{
