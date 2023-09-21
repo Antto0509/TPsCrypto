@@ -10,38 +10,7 @@ namespace NbPremier
     {
         static void Main(string[] args)
         {
-            CribleEratosthene(10);
-        }
-
-        public static void CribleEratosthene(int n)
-        {
-            int nbDiviseurs;
-
-            int[] listeEntiers = new int[n];
-            bool[] listeBiffe = new bool[n];
-            for (int i = 1; i <= n; i++)
-            {
-                listeEntiers[i] = i;
-                Console.WriteLine(i);
-                nbDiviseurs = 0;
-
-                for (int j = 1; j <= Math.Sqrt(n); j++)
-                {
-                    if ((i % j == 0) and i!= 1)
-                    {
-                        nbDiviseurs++;
-                    }
-                }
-
-                if(nbDiviseurs <= 2){
-				    listeBiffe[i - 1] = true;
-			    }
-			    else
-			    {
-				    listeBiffe[i - 1] = false;
-			    }
-            }
-			
+            Premier.CribleEratosthene(10);
         }
     }
 }
