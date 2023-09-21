@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Réalisé par Antoine PISSON et Antoine COUTREEL
+// Groupe : INFO2 G2
+
+using System;
 
 public static class Premier
 {
@@ -13,8 +16,8 @@ public static class Premier
 
 	}
 
-	public static DFP()
-	{
+	public static DFP() // Décomposition en produit de Facteurs Premiers
+    {
 
 	}
 
