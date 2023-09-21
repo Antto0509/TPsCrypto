@@ -2,6 +2,7 @@
 // Groupe : INFO2 G2
 
 using System;
+using System.Collections.Generic;
 
 public static class Premier
 {
@@ -107,10 +108,16 @@ public static class Premier
         }
     }
 
-	public static void DFP() // Décomposition en produit de Facteurs Premiers
+	public static void DFP(int n) // Décomposition en produit de Facteurs Premiers
     {
+        List<int> facteurs = new List<int>();
+        List<int> exposants = new List<int>();
 
-	}
+        do
+        {
+
+        } while (n >= 1);
+    }
 
 	public static void IndicateurEuler()
 	{
