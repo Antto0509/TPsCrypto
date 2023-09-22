@@ -47,6 +47,45 @@ public static class Premier
          * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.*/
     }
 
+    public static bool[] CribleEratostheneTF(int n)
+    {
+        int nbDiviseurs;
+
+        int[] listeEntiers = new int[n];
+        bool[] listeBool = new bool[n];
+
+        listeBool[0] = false;
+
+        for (int i = 1; i <= n; i++)
+        {
+            listeEntiers[i - 1] = i;
+            //Console.WriteLine(i);
+            nbDiviseurs = 0;
+            for (int j = 1; j <= n; j++)
+            {
+                if ((i % j == 0) && (j <= i) && (i != 1))
+                {
+                    nbDiviseurs++;
+                }
+            }
+
+            if (nbDiviseurs == 2)
+            {
+                listeBool[i - 1] = true;
+            }
+            else
+            {
+                listeBool[i - 1] = false;
+            }
+        }
+        /*for (int k = 0; k < n; k++)
+        {
+            Console.WriteLine(listeBool[k]);
+        }*/
+
+        return listeBool;
+    }
+
 	public static bool nbPremierEntreEux(int a, int b)
 	{
 		int PGCD = 0;
@@ -113,15 +152,34 @@ public static class Premier
         }
     }
 
-	public static void DFP(int n) // Décomposition en produit de Facteurs Premiers
+	public static (List<int>, List<int>) DFP(int n) // Décomposition en produit de Facteurs Premiers
     {
         List<int> facteurs = new List<int>();
         List<int> exposants = new List<int>();
 
-        do
-        {
+        bool[] tab = CribleEratostheneTF(n);
+        int p = 2;
+        int expo = 0;
 
-        } while (n >= 1);
+        facteurs.Add(n);
+
+        while (n != 1)
+        {
+            if (n % p == 0)
+            {
+                facteurs.Add(p);
+                while(n % p == 0)
+                {
+                    expo++;
+                    n = n / p;
+                }
+                exposants.Add(expo);
+            }
+
+            while (tab[++p] != true) {}
+        }
+
+        return (facteurs, exposants);
     }
 
 	public static void IndicateurEuler()
