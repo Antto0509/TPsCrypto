@@ -9,38 +9,38 @@ public static class Premier
 
 	public static void CribleEratosthene(int n)
 	{
-        int nbDiviseurs;
+        // On initialise le tableau de booléens des nombres premiers
+        bool[] listeBiffe = new bool[n + 1];
 
-        int[] listeEntiers = new int[n];
-        bool[] listeBiffe = new bool[n];
-
-        listeBiffe[0] = false;
-
-        for (int i = 1; i <= n; i++)
+        for (int i = 2; i <= n; i++)
         {
-            listeEntiers[i - 1] = i;
-            Console.WriteLine(i);
-            nbDiviseurs = 0;
-            for (int j = 1; j <= n; j++)
+            listeBiffe[i] = true;
+        }
+
+        // On biffe le 1 qui n'est pas un nombre premier
+        listeBiffe[1] = false;
+
+        // On biffe les multiples de 2, puis 3...
+        for (int i = 2; i <= Math.Sqrt(n); i++)
+        {
+            // Si le nombre actuel n'as pas été biffé
+            if (listeBiffe[i])
             {
-                if ((i % j == 0) && (j <= i) && (i != 1))
+                for (int j = i * i; j <= n; j += i)
                 {
-                    nbDiviseurs++;
+                    listeBiffe[j] = false;
                 }
             }
-
-            if (nbDiviseurs == 2)
-            {
-                listeBiffe[i - 1] = true;
-            }
-            else
-            {
-                listeBiffe[i - 1] = false;
-            }
         }
-        for (int k = 0; k < n; k++)
+
+        // Affichage des nombres premiers
+        Console.WriteLine("Nombres premiers jusqu'à " + n + ":");
+        for (int i = 2; i <= n; i++)
         {
-            Console.WriteLine(listeBiffe[k]);
+            if (listeBiffe[i])
+            {
+                Console.Write(i + " ");
+            }
         }
 
         /*Jeux de test.Les nombres premiers inférieurs à 100 sont: 
