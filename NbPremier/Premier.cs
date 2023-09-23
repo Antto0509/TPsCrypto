@@ -183,9 +183,9 @@ public static class Premier
         for(int i = 0; i <= facteurs.Count; i++)
         {
             Console.WriteLine($"{facteurs[i]}  {exposants[i]}");
-        }
+        }*/
 
-        return (facteurs, exposants);*/
+        return (facteurs, exposants);
     }
 
 	public static void IndicateurEuler()
