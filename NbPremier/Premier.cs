@@ -171,15 +171,21 @@ public static class Premier
                 while(n % p == 0)
                 {
                     expo++;
-                    n = n / p;
+                    n /= p;
                 }
                 exposants.Add(expo);
             }
 
-            while (tab[++p] != true) {}
+            while (tab[p] != true) {}
         }
 
-        return (facteurs, exposants);
+        /*Console.WriteLine("Les facteurs et les exposants :");
+        for(int i = 0; i <= facteurs.Count; i++)
+        {
+            Console.WriteLine($"{facteurs[i]}  {exposants[i]}");
+        }
+
+        return (facteurs, exposants);*/
     }
 
 	public static void IndicateurEuler()
