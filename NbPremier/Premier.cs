@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public static class Premier
 {
 
-	public static void CribleEratosthene(int n)
+	public static bool[] CribleEratosthene(int n)
 	{
         // On initialise le tableau de booléens des nombres premiers
         bool[] listeBiffe = new bool[n + 1];
@@ -45,6 +45,8 @@ public static class Premier
 
         /*Jeux de test.Les nombres premiers inférieurs à 100 sont: 
          * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.*/
+
+        return listeBiffe;
     }
 
     public static bool[] CribleEratostheneTF(int n)
@@ -159,7 +161,7 @@ public static class Premier
         List<int> facteurs = new List<int>();
         List<int> exposants = new List<int>();
 
-        bool[] tab = CribleEratostheneTF(n);
+        bool[] tab = CribleEratosthene(n);
         int p = 2;
         int expo = 0;
 
