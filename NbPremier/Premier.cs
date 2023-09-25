@@ -117,14 +117,13 @@ public static class Premier
         }
     }
 
-    public static (List<int>, List<int>) DFP(int n) //Décomposition en facteurs premiers
+    public static (List<int>, List<int>) DFP(int n) // Décomposition en facteurs premiers
     {
         List<int> facteurs = new List<int>();
         List<int> exposants = new List<int>();
 
         bool[] tab = CribleEratosthene(n);
         int p = 2;
-        int expo = 0;
 
         if (n == 1)
         {
@@ -133,33 +132,31 @@ public static class Premier
         }
         else
         {
-            facteurs.Add(n);
-        }
-
-        while (n != 1)
-        {
-            if ((n % p) == 0)
+            while (n != 1)
             {
-                facteurs.Add(p);
-                while ((n % p) == 0)
+                int expo = 0; // Initialise l'exposant à zéro pour chaque facteur premier
+                if ((n % p) == 0)
                 {
-                    expo++;
-                    n /= p;
+                    facteurs.Add(p);
+                    while ((n % p) == 0)
+                    {
+                        expo++;
+                        n /= p;
+                    }
+                    exposants.Add(expo);
                 }
-                exposants.Add(expo);
+                while (p <= n && tab[++p] != true) { }
             }
-            while (p <= n && tab[++p] != true) { }
         }
 
         Console.WriteLine("Les facteurs et les exposants :");
-        for (int i = 1; i < facteurs.Count; i++) 
+        for (int i = 0; i < facteurs.Count; i++)
         {
             Console.WriteLine($"{facteurs[i]}^{exposants[i]}");
         }
 
         return (facteurs, exposants);
     }
-
 
     public static int IndicateurEuler(int n)
 	{
