@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public static class Premier
 {
 
-	public static bool[] CribleEratosthene(int n)
-	{
+    public static bool[] CribleEratosthene(int n)
+    {
         // On initialise le tableau de booléens des nombres premiers
         bool[] listeBiffe = new bool[n + 1];
 
@@ -43,52 +43,13 @@ public static class Premier
             }
         }
 
-        /*Jeux de test.Les nombres premiers inférieurs à 100 sont: 
+        /*Jeux de test.Les nombres premiers inférieurs à 100 sont:
          * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.*/
 
         return listeBiffe;
     }
 
-    public static bool[] CribleEratostheneTF(int n)
-    {
-        int nbDiviseurs;
-
-        int[] listeEntiers = new int[n];
-        bool[] listeBool = new bool[n];
-
-        listeBool[0] = false;
-
-        for (int i = 1; i <= n; i++)
-        {
-            listeEntiers[i - 1] = i;
-            //Console.WriteLine(i);
-            nbDiviseurs = 0;
-            for (int j = 1; j <= n; j++)
-            {
-                if ((i % j == 0) && (j <= i) && (i != 1))
-                {
-                    nbDiviseurs++;
-                }
-            }
-
-            if (nbDiviseurs == 2)
-            {
-                listeBool[i - 1] = true;
-            }
-            else
-            {
-                listeBool[i - 1] = false;
-            }
-        }
-        /*for (int k = 0; k < n; k++)
-        {
-            Console.WriteLine(listeBool[k]);
-        }*/
-
-        return listeBool;
-    }
-
-	public static bool nbPremierEntreEux(int a, int b)
+    public static bool nbPremierEntreEux(int a, int b)
 	{
 		int PGCD = 0;
 		int r = 0; 
@@ -156,7 +117,7 @@ public static class Premier
         }
     }
 
-	public static (List<int>, List<int>) DFP(int n) // Décomposition en produit de Facteurs Premiers
+    public static (List<int>, List<int>) DFP(int n) //Décomposition en facteurs premiers
     {
         List<int> facteurs = new List<int>();
         List<int> exposants = new List<int>();
@@ -165,42 +126,46 @@ public static class Premier
         int p = 2;
         int expo = 0;
 
-        facteurs.Add(n);
+        // Vérifie si n est égal à 1 dès le début
+        if (n == 1)
+        {
+            facteurs.Add(1);
+            exposants.Add(1);
+        }
+        else
+        {
+            facteurs.Add(n);
+        }
 
         while (n != 1)
         {
             if ((n % p) == 0)
             {
                 facteurs.Add(p);
-                while((n % p) == 0)
+                while ((n % p) == 0)
                 {
                     expo++;
                     n /= p;
                 }
                 exposants.Add(expo);
             }
-            while (tab[++p] != true) { }
+            // Ajout de la condition pour éviter une boucle infinie
+            while (p <= n && tab[++p] != true) { }
         }
 
-        if (n != 1)
+        Console.WriteLine("Les facteurs et les exposants :");
+        for (int i = 0; i < facteurs.Count; i++) // Utilisez < au lieu de <=
         {
-            Console.WriteLine("Les facteurs et les exposants :");
-            for (int i = 0; i <= facteurs.Count; i++)
-            {
-                Console.WriteLine($"{facteurs[i]} - {exposants[i]}");
-            }
+            Console.WriteLine($"{facteurs[i]} - {exposants[i]}");
         }
-        else
-        {
-            Console.WriteLine("1 - 1");
-        }
-        
+
         return (facteurs, exposants);
     }
 
-	public static int IndicateurEuler(int n)
+
+    public static int IndicateurEuler(int n)
 	{
-        bool[] tab = CribleEratostheneTF(n);
+        bool[] tab = CribleEratosthene(n);
         List<int> facteurs = DFP(n).Item1; 
         List<int> exposants = DFP(n).Item2;
         int r = 0;
