@@ -152,9 +152,9 @@ public static class Premier
         }
 
         Console.WriteLine("Les facteurs et les exposants :");
-        for (int i = 0; i < facteurs.Count; i++) 
+        for (int i = 1; i < facteurs.Count; i++) 
         {
-            Console.WriteLine($"{facteurs[i]} - {exposants[i]}");
+            Console.WriteLine($"{facteurs[i]}^{exposants[i]}");
         }
 
         return (facteurs, exposants);
