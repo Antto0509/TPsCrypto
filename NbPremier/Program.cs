@@ -10,7 +10,7 @@ namespace NbPremier
     {
         static void Main(string[] args)
         {
-            Premier.DFP(50);
+            Premier.DFP(1);
         }
 			
     }

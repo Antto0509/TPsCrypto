@@ -89,11 +89,12 @@ public static class Premier
 	public static bool nbPremierEntreEux(int a, int b)
 	{
 		int PGCD = 0;
-		int r;
+		int r = 0; 
 
 		if (a > b && b != 0)
 		{
-            do{
+            while (r != 0)
+            {
 				r = a % b;
 
                 if (r == 0)
@@ -105,7 +106,7 @@ public static class Premier
                     a = b;
                     b = r;
                 }
-            } while (r != 0) ;
+            }
 
 			if(PGCD == 1)
 			{
@@ -122,7 +123,8 @@ public static class Premier
 
                 Console.WriteLine($"Les valeurs {a} et {b} ont ete echanges pour trouver le PGCD.");
 
-                do{
+                while(r != 0)
+                {
                     r = a % b;
 
                     if (r == 0)
@@ -134,7 +136,7 @@ public static class Premier
                         a = b;
                         b = r;
                     }
-                } while (r != 0) ;
+                }
 
                 if (PGCD == 1)
                 {
@@ -165,31 +167,61 @@ public static class Premier
 
         while (n != 1)
         {
-            if (n % p == 0)
+            if ((n % p) == 0)
             {
                 facteurs.Add(p);
-                while(n % p == 0)
+                while((n % p) == 0)
                 {
                     expo++;
                     n /= p;
                 }
                 exposants.Add(expo);
             }
-
-            while (tab[p] != true) {}
+            while (tab[++p] != true) { }
         }
 
-        /*Console.WriteLine("Les facteurs et les exposants :");
-        for(int i = 0; i <= facteurs.Count; i++)
+        if (n != 1)
         {
-            Console.WriteLine($"{facteurs[i]}  {exposants[i]}");
-        }*/
+            Console.WriteLine("Les facteurs et les exposants :");
+            for (int i = 0; i <= facteurs.Count; i++)
+            {
+                Console.WriteLine($"{facteurs[i]} - {exposants[i]}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("1 - 1");
+        }
+        
 
         return (facteurs, exposants);
     }
 
-	public static void IndicateurEuler()
+	public static int IndicateurEuler(int n)
 	{
+        bool[] tab = CribleEratostheneTF(n);
+        List<int> facteurs = DFP(n).Item1; 
+        List<int> exposants = DFP(n).Item2;
+        int r = 0;
 
+        while (n != 1) 
+        { 
+            if(tab[n] == true)
+            {
+                Console.WriteLine($"phi({n}) = {n-1}");
+                return (n - 1);
+            }
+            else
+            {
+                for(int i = 0; i < facteurs.Count; i++)
+                {
+                    r += (int)Math.Pow(facteurs[i], exposants[i] - 1) * (facteurs[i] - 1);
+                }
+                Console.WriteLine($"phi({n}) = {r}");
+                return r;
+            }
+        }
+
+        return 0;
 	}
 }
