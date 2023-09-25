@@ -10,9 +10,9 @@ namespace NbPremier
     {
         static void Main(string[] args)
         {
-            Premier.CribleEratosthene(150);
+            //Premier.CribleEratosthene(150);
             //Premier.nbPremierEntreEux(2, 6);
-            //Premier.DFP(50);
+            Premier.DFP(50);
             //Premier.IndicateurEuler(50);
         }
 			

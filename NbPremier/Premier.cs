@@ -126,7 +126,6 @@ public static class Premier
         int p = 2;
         int expo = 0;
 
-        // Vérifie si n est égal à 1 dès le début
         if (n == 1)
         {
             facteurs.Add(1);
@@ -149,12 +148,11 @@ public static class Premier
                 }
                 exposants.Add(expo);
             }
-            // Ajout de la condition pour éviter une boucle infinie
             while (p <= n && tab[++p] != true) { }
         }
 
         Console.WriteLine("Les facteurs et les exposants :");
-        for (int i = 0; i < facteurs.Count; i++) // Utilisez < au lieu de <=
+        for (int i = 0; i < facteurs.Count; i++) 
         {
             Console.WriteLine($"{facteurs[i]} - {exposants[i]}");
         }
