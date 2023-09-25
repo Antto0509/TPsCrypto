@@ -193,7 +193,6 @@ public static class Premier
             Console.WriteLine("1 - 1");
         }
         
-
         return (facteurs, exposants);
     }
 
