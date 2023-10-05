@@ -147,7 +147,7 @@ public static class Premier
                 }
                 while (p <= n && tab[++p] != true) { }
             }
-        }
+        } 
 
         Console.WriteLine("Les facteurs et les exposants :");
         for (int i = 0; i < facteurs.Count; i++)
