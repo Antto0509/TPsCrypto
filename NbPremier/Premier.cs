@@ -192,4 +192,31 @@ public static class Premier
 	{
 
 	}
+
+    // Exercice exponentiation modulaire
+    public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
+    {
+        // Le résultat est toujours 0 si le modulo est 1.
+        if (modulo == 1)
+        {
+            return 0; 
+        }
+
+        long resultat = 1;
+        baseValeur = baseValeur % modulo; 
+
+        while (exposant > 0)
+        {
+            // Si exposant impair
+            if (exposant % 2 == 1)
+            {
+                resultat = (resultat * baseValeur) % modulo;
+            }
+
+            baseValeur = (baseValeur * baseValeur) % modulo;
+            exposant /= 2;
+        }
+
+        return resultat;
+    }
 }
