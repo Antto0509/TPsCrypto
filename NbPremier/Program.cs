@@ -10,11 +10,11 @@ namespace NbPremier
     {
         static void Main(string[] args)
         {
-            Premier.CribleEratosthene(150);
-            Premier.nbPremierEntreEux(2, 6);
-            Premier.DFP(50);
-            Premier.IndicateurEuler(50);
-            Premier.PuissanceModulo(4, 13, 497);
+            Console.WriteLine(Premier.CribleEratosthene(150));
+            Console.WriteLine(Premier.nbPremierEntreEux(2, 6));
+            Console.WriteLine(Premier.DFP(50));
+            Console.WriteLine(Premier.IndicateurEuler(50));
+            Console.WriteLine(Premier.PuissanceModulo(4, 13, 497));
         }
 			
     }
