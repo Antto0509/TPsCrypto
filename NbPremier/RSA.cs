@@ -37,13 +37,15 @@ namespace NbPremier
         private bool Valid(int p, int q)
         {
             int compteur = 0;
+            bool[] tab;
+
             if (p > q)
             {
-                bool[] tab = Premier.CribleEratosthene(p);
+                tab = Premier.CribleEratosthene(p);
             }
             else
             {
-                bool[] tab = Premier.CribleEratosthene(q);
+                tab = Premier.CribleEratosthene(q);
             }
 
             for (int i = 2; i <= n; i++)
@@ -66,32 +68,12 @@ namespace NbPremier
         // Méthode pour calculer la clé de déchiffrement d
         private int CalculerD()
         {
-            d = AlgorithmeEuclidienEtendu(e, z);
+            d = (int)Premier.PuissanceModulo(e, Premier.IndicateurEuler(z) - 1, z);
             if (d < 0)
             {
                 d += z; // Assurer que d est positif
             }
             return d;
-        }
-
-        // Algorithme d'Euclide étendu
-        private int AlgorithmeEuclidienEtendu(int a, int b)
-        {
-            int x0 = 1, x1 = 0, y0 = 0, y1 = 1;
-            while (b != 0)
-            {
-                int q = a / b;
-                int temp = b;
-                b = a % b;
-                a = temp;
-                temp = x0;
-                x0 = x1;
-                x1 = temp - q * x1;
-                temp = y0;
-                y0 = y1;
-                y1 = temp - q * y1;
-            }
-            return x0;
         }
 
         // Méthode pour afficher la clé de déchiffrement
