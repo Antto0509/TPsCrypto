@@ -37,13 +37,14 @@ namespace NbPremier
         private bool Valid(int p, int q)
         {
             int compteur = 0;
+            bool[] tab;
             if (p > q)
             {
-                bool[] tab = Premier.CribleEratosthene(p);
+                tab = Premier.CribleEratosthene(p);
             }
             else
             {
-                bool[] tab = Premier.CribleEratosthene(q);
+                tab = Premier.CribleEratosthene(q);
             }
 
             for (int i = 2; i <= n; i++)
