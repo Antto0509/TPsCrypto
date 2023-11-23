@@ -36,7 +36,31 @@ namespace NbPremier
         // Méthode pour vérifier la validité de la clé de chiffrement
         private bool Valid(int p, int q)
         {
-            return true;
+            int compteur = 0;
+            if (p > q)
+            {
+                bool[] tab = Premier.CribleEratosthene(p);
+            }
+            else
+            {
+                bool[] tab = Premier.CribleEratosthene(q);
+            }
+
+            for (int i = 2; i <= n; i++)
+            {
+                if (tab[i])
+                {
+                    if (i==p || i == q)
+                    {
+                        compteur++;
+                    }
+                }
+            }
+            if (compteur == 2)
+            {
+                return true;
+            }
+            return false;
         }
 
         // Méthode pour calculer la clé de déchiffrement d
