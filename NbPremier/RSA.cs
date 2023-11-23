@@ -23,8 +23,9 @@ namespace NbPremier
                 this.p = p;
                 this.q = q;
                 this.e = e;
-                this.n = p * q;
-                this.d = CalculerD();
+                n = p * q;
+                z = Premier.IndicateurEuler(n);
+                d = CalculerD();
             }
             else
             {
@@ -41,9 +42,7 @@ namespace NbPremier
         // Méthode pour calculer la clé de déchiffrement d
         private int CalculerD()
         {
-            n = p * q;
-            z = Premier.IndicateurEuler(n);
-            int d = AlgorithmeEuclidienEtendu(e, z);
+            d = AlgorithmeEuclidienEtendu(e, z);
             if (d < 0)
             {
                 d += z; // Assurer que d est positif
