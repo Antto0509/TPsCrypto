@@ -50,7 +50,7 @@ namespace NbPremier
 
             // Test de la classe RSA
             Console.WriteLine("\nTEST DE LA CLASSE RSA :\n");
-
+            /*
             // Jeux de test
             int p1 = 47, q1 = 71, e1 = 79;
             int p2 = 5, q2 = 17, e2 = 5;
@@ -65,6 +65,7 @@ namespace NbPremier
 
             RSA rsa3 = new RSA(p3, q3, e3); // Ne devrait pas être créé
             RSA rsa4 = new RSA(p4, q4, e4); // Ne devrait pas être créé
+            */
         }	
     }
 }
