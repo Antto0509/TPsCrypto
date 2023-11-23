@@ -34,7 +34,7 @@ namespace NbPremier
         }
 
         // Méthode pour vérifier la validité de la clé de chiffrement
-        private bool Valid(int p, int q)
+        public bool Valid(int p, int q)
         {
             int compteur = 0;
             bool[] tab;
@@ -66,7 +66,7 @@ namespace NbPremier
         }
 
         // Méthode pour calculer la clé de déchiffrement d
-        private int CalculerD()
+        public int CalculerD()
         {
             d = (int)Premier.PuissanceModulo(e, Premier.IndicateurEuler(z) - 1, z);
             if (d < 0)
