@@ -46,6 +46,7 @@ namespace NbPremier
                     Console.Write(i + " ");
                 }
             }
+            Console.WriteLine("\n");
 
             /*Jeux de test.Les nombres premiers inférieurs à 100 sont:
              * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.*/
@@ -77,7 +78,7 @@ namespace NbPremier
 
                 if (PGCD == 1)
                 {
-                    Console.WriteLine($"{a} et {b} sont premiers entre eux");
+                    Console.WriteLine($"{a} et {b} sont premiers entre eux\n");
                 }
             }
             else
@@ -88,7 +89,7 @@ namespace NbPremier
                     a = b;
                     b = echange;
 
-                    Console.WriteLine($"Les valeurs {a} et {b} ont ete echanges pour trouver le PGCD.");
+                    Console.WriteLine($"Les valeurs {a} et {b} ont ete echanges pour trouver le PGCD.\n");
 
                     while (r != 0)
                     {
@@ -107,7 +108,7 @@ namespace NbPremier
 
                     if (PGCD == 1)
                     {
-                        Console.WriteLine($"{a} et {b} sont premiers entre eux");
+                        Console.WriteLine($"{a} et {b} sont premiers entre eux\n");
                     }
                 }
             }
@@ -158,6 +159,7 @@ namespace NbPremier
             {
                 Console.WriteLine($"{facteurs[i]}^{exposants[i]}");
             }
+            Console.WriteLine("\n");
 
             return (facteurs, exposants);
         }
@@ -173,7 +175,7 @@ namespace NbPremier
             {
                 if (tab[n] == true)
                 {
-                    Console.WriteLine($"phi({n}) = {n - 1}");
+                    Console.WriteLine($"phi({n}) = {n - 1}\n");
                     return (n - 1);
                 }
                 else
@@ -182,7 +184,7 @@ namespace NbPremier
                     {
                         r += (int)Math.Pow(facteurs[i], exposants[i] - 1) * (facteurs[i] - 1);
                     }
-                    Console.WriteLine($"phi({n}) = {r}");
+                    Console.WriteLine($"phi({n}) = {r}\n");
                     return r;
                 }
             }
