@@ -25,7 +25,10 @@ namespace NbPremier
                 this.e = e;
                 n = p * q;
                 z = Premier.IndicateurEuler(n);
-                d = CalculerD();
+                if (ValidPremierEntreEux(z, e))
+                {
+                    d = CalculerD();
+                }
             }
             else
             {
@@ -63,6 +66,18 @@ namespace NbPremier
                 return true;
             }
             return false;
+        }
+
+        public bool ValidPremierEntreEux(int z, int e)
+        {
+            if (Premier.nbPremierEntreEux(z, e))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Méthode pour calculer la clé de déchiffrement d
