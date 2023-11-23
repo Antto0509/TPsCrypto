@@ -13,11 +13,12 @@ namespace NbPremier
         private int e;
         private int n;
         private int d;
+        private int z;
 
         // Constructeur
         public RSA(int p, int q, int e)
         {
-            if (EstValid(p, q, e))
+            if (Valid(p, q))
             {
                 this.p = p;
                 this.q = q;
@@ -32,20 +33,20 @@ namespace NbPremier
         }
 
         // Méthode pour vérifier la validité de la clé de chiffrement
-        private bool EstValid(int p, int q, int e)
+        private bool Valid(int p, int q)
         {
-            int phiN = (p - 1) * (q - 1);
-            return Premier.nbPremierEntreEux((int)e, (int)phiN) && p > 1 && q > 1 && e > 1 && n > 1;
+            return true;
         }
 
         // Méthode pour calculer la clé de déchiffrement d
         private int CalculerD()
         {
-            int phiN = (p - 1) * (q - 1);
-            int d = AlgorithmeEuclidienEtendu(e, phiN);
+            n = p * q;
+            z = Premier.IndicateurEuler(n);
+            int d = AlgorithmeEuclidienEtendu(e, z);
             if (d < 0)
             {
-                d += phiN; // Assurer que d est positif
+                d += z; // Assurer que d est positif
             }
             return d;
         }
