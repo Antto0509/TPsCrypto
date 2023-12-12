@@ -40,7 +40,7 @@ namespace NbPremier
             return listeBiffe;
         }
 
-        public static void AfficherNombresPremiersAvecCribleEratosthene(int n)
+        public static void AfficherCribleEratosthene(int n)
         {
             bool[] listeBiffe = CribleEratosthene(n);
 

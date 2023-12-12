@@ -10,9 +10,9 @@ namespace NbPremier
     {
         static void Main(string[] args)
         {
-            // Test de AfficherNombresPremiersAvecCribleEratosthene
+            // Test de AfficherCribleEratosthene
             int n2 = 30;
-            Premier.AfficherNombresPremiersAvecCribleEratosthene(n2);
+            Premier.AfficherCribleEratosthene(n2);
 
             // Test de nbPremierEntreEux
             int a = 15;
