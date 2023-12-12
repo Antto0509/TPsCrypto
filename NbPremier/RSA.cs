@@ -34,10 +34,10 @@ namespace NbPremier
                 this.p = p;
                 this.q = q;
                 this.e = e;
-                this.n = p * q;
+                n = p * q;
 
                 // Calcul de la clé de déchiffrement d
-                this.d = CalculerD(e, z);
+                d = CalculerD(e, z);
             }
             catch (ArgumentException ex)
             {
