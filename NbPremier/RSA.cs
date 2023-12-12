@@ -13,7 +13,7 @@ namespace NbPremier
         private int e;
         private int n;
         private int d;
-        private int z;
+        private int indicateurEuler;
 
         // Constructeur
         public RSA(int p, int q, int e)
@@ -23,74 +23,53 @@ namespace NbPremier
             this.e = e;
             n = p * q;
 
-            if (Valid(p, q))
+            if (!IsValidKey(p, q))
             {
-                z = Premier.IndicateurEuler(n);
-                if (ValidPremierEntreEux(z, e))
-                {
-                    d = CalculerD();
-                }
+                throw new ArgumentException("Clé de chiffrement invalide.");
             }
-            else
+
+            indicateurEuler = CalculerIndicateurEuler(p, q);
+
+            if (!IsValidPublicKey(indicateurEuler, e))
             {
-                Console.WriteLine("Clé de chiffrement invalide.");
+                throw new ArgumentException("Clé de chiffrement invalide.");
             }
+
+            d = CalculerD();
         }
         
         // Méthode pour vérifier la validité de la clé de chiffrement
-        public bool Valid(int p, int q)
+        private bool IsValidKey(int p, int q)
         {
             int compteur = 0;
             bool[] tab;
 
-            if (p > q)
-            {
-                tab = Premier.CribleEratosthene(p);
-            }
-            else
-            {
-                tab = Premier.CribleEratosthene(q);
-            }
+            int max = Math.Max(p, q);
+            tab = Premier.CribleEratosthene(max);
 
-            for (int i = 2; i <= n; i++)
+            for (int i = 2; i <= max; i++)
             {
-                if (tab[i])
+                if (tab[i] && (i == p || i == q))
                 {
-                    if (i == p || i == q)
-                    {
-                        compteur++;
-                    }
+                    compteur++;
                 }
             }
-            if (compteur == 2)
-            {
-                return true;
-            }
-            return false;
+
+            return compteur == 2;
         }
         
 
-        public bool ValidPremierEntreEux(int z, int e)
+
+        private bool IsValidPublicKey(int z, int e)
         {
-            if (Premier.nbPremierEntreEux(z, e))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Premier.nbPremierEntreEux(z, e);
         }
 
         // Méthode pour calculer la clé de déchiffrement d
-        public int CalculerD()
+        private int CalculerD()
         {
-            d = (int)Premier.PuissanceModulo(e, Premier.IndicateurEuler(z) - 1, z);
-            if (d < 0)
-            {
-                d += z; // Assurer que d est positif
-            }
-            return d;
+            int dCalcule = (int)Premier.PuissanceModulo(e, indicateurEuler - 1, n);
+            return (dCalcule < 0) ? dCalcule + n : dCalcule;
         }
 
         // Méthode pour afficher la clé de déchiffrement
@@ -104,6 +83,12 @@ namespace NbPremier
             {
                 Console.WriteLine("Clé de déchiffrement non calculée.");
             }
+        }
+
+        // Méthode pour calculer l'indicateur Euler
+        private int CalculerIndicateurEuler(int p, int q)
+        {
+            return Premier.IndicateurEuler(p) * Premier.IndicateurEuler(q);
         }
     }
 }
