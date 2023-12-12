@@ -169,28 +169,17 @@ namespace NbPremier
             bool[] tab = CribleEratosthene(n);
             List<int> facteurs = DFP(n).Item1;
             List<int> exposants = DFP(n).Item2;
-            int r = 0;
+            int resultat = 1;  // Initialiser le résultat à 1
 
-            while (n != 1)
+            for (int i = 0; i < facteurs.Count; i++)
             {
-                if (tab[n] == true)
-                {
-                    Console.WriteLine($"phi({n}) = {n - 1}\n");
-                    return (n - 1);
-                }
-                else
-                {
-                    for (int i = 0; i < facteurs.Count; i++)
-                    {
-                        r += (int)Math.Pow(facteurs[i], exposants[i] - 1) * (facteurs[i] - 1);
-                    }
-                    Console.WriteLine($"phi({n}) = {r}\n");
-                    return r;
-                }
+                resultat *= (int)Math.Pow(facteurs[i], exposants[i] - 1) * (facteurs[i] - 1);
             }
 
-            return 0;
+            Console.WriteLine($"phi({n}) = {resultat}\n");
+            return resultat;
         }
+
 
         // Exercice exponentiation modulaire
         public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
