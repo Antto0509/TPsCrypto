@@ -116,6 +116,28 @@ namespace NbPremier
             rsa5.AfficherCleChiffrement();
             rsa5.AfficherCleDechiffrement();
 
+            // Test chiffrement et déchiffrement d'entier
+            RSA rsa6 = new RSA(47, 71, 79);
+
+            // Chiffrement du message
+            int messageAChiffrer1 = 61;
+            int messageChiffre1 = rsa6.Chiffrer(messageAChiffrer1);
+            Console.WriteLine($"Le message {messageAChiffrer1} est chiffré en {messageChiffre1}.\n");
+
+            // Déchiffrement du message chiffré
+            int messageDechiffre1 = rsa6.Dechiffrer(messageChiffre1);
+            Console.WriteLine($"Le message déchiffré de {messageChiffre1} est {messageDechiffre1}.\n");
+
+            // Chiffrement du message
+            int messageAChiffrer2 = 215;
+            int messageChiffre2 = rsa6.Chiffrer(messageAChiffrer2);
+            Console.WriteLine($"Le message {messageAChiffrer2} est chiffré en {messageChiffre2}.\n");
+
+            // Déchiffrement du message chiffré
+            int messageDechiffre2 = rsa6.Dechiffrer(messageChiffre2);
+            Console.WriteLine($"Le message déchiffré de {messageChiffre2} est {messageDechiffre2}.\n");
+
+
             Console.WriteLine("Tests terminés.");
             
             Console.ReadLine();

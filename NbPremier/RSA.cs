@@ -64,5 +64,52 @@ namespace NbPremier
         {
             Console.WriteLine($"Clé de déchiffrement : {d}\n");
         }
+
+        // Méthode de chiffrement d'entier
+        public int Chiffrer(int message)
+        {
+            try
+            {
+                // Vérification du message pour s'assurer qu'il est inférieur à n
+                if (message >= n || message < 0)
+                {
+                    throw new ArgumentException("Le message doit être un entier positif inférieur à n.");
+                }
+
+                // Utilisation de la méthode de puissance modulaire pour le chiffrement
+                return (int)Premier.PuissanceModulo(message, e, n);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors du chiffrement : {ex.Message}");
+                // Vous pouvez choisir de lever à nouveau l'exception ou de prendre d'autres mesures.
+                return -1; // Valeur indiquant une erreur
+            }
+        }
+
+        // Méthode de déchiffrement d'entier
+        public int Dechiffrer(int messageChiffre)
+        {
+            try
+            {
+                // Utilisation de la méthode de puissance modulaire pour le déchiffrement
+                int messageDechiffre = (int)Premier.PuissanceModulo(messageChiffre, d, n);
+
+                // Vérification du résultat pour s'assurer qu'il est inférieur à n
+                if (messageDechiffre >= n || messageDechiffre < 0)
+                {
+                    throw new ArgumentException("Le message déchiffré n'est pas valide.");
+                }
+
+                return messageDechiffre;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors du déchiffrement : {ex.Message}");
+                // Vous pouvez choisir de lever à nouveau l'exception ou de prendre d'autres mesures.
+                return -1; // Valeur indiquant une erreur
+            }
+        }
+
     }
 }
