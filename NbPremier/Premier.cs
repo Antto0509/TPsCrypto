@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace NbPremier
 {
@@ -11,6 +9,7 @@ namespace NbPremier
         // Réalisé par Antoine PISSON et Antoine COUTREEL
         // Groupe : INFO2 G2
 
+        // Crible d'Eratosthène
         public static bool[] CribleEratosthene(int n)
         {
             // On initialise le tableau de booléens des nombres premiers
@@ -40,6 +39,7 @@ namespace NbPremier
             return listeBiffe;
         }
 
+        // Affiche crible d'Eratosthène
         public static void AfficherCribleEratosthene(int n)
         {
             bool[] listeBiffe = CribleEratosthene(n);
@@ -55,74 +55,20 @@ namespace NbPremier
             Console.WriteLine("\n");
         }
 
-        public static bool nbPremierEntreEux(int a, int b)
+        // Premiers entre eux
+        public static bool PremierEntreEux(int a, int b)
         {
-            int PGCD = 0;
-            int r = 0;
-
-            if (a > b && b != 0)
+            while (b != 0)
             {
-                while (r != 0)
-                {
-                    r = a % b;
-
-                    if (r == 0)
-                    {
-                        PGCD = b;
-                    }
-                    else
-                    {
-                        a = b;
-                        b = r;
-                    }
-                }
-
-                if (PGCD == 1)
-                {
-                    Console.WriteLine($"{a} et {b} sont premiers entre eux\n");
-                }
+                int temp = b;
+                b = a % b;
+                a = temp;
             }
-            else
-            {
-                if (b < a)
-                {
-                    int echange = a;
-                    a = b;
-                    b = echange;
 
-                    Console.WriteLine($"Les valeurs {a} et {b} ont ete echanges pour trouver le PGCD.\n");
-
-                    while (r != 0)
-                    {
-                        r = a % b;
-
-                        if (r == 0)
-                        {
-                            PGCD = b;
-                        }
-                        else
-                        {
-                            a = b;
-                            b = r;
-                        }
-                    }
-
-                    if (PGCD == 1)
-                    {
-                        Console.WriteLine($"{a} et {b} sont premiers entre eux\n");
-                    }
-                }
-            }
-            if (b == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return a == 1;
         }
 
+        // Décomposition en facteurs premiers
         public static (List<int>, List<int>) DFP(int n) // Décomposition en facteurs premiers
         {
             List<int> facteurs = new List<int>();
@@ -138,20 +84,28 @@ namespace NbPremier
             }
             else
             {
-                while (n != 1)
+                if (tab[n] == true)
                 {
-                    int expo = 0; // Initialise l'exposant à zéro pour chaque facteur premier
-                    if ((n % p) == 0)
+                    facteurs.Add(n);
+                    exposants.Add(1);
+                }
+                else
+                {
+                    while (n != 1)
                     {
-                        facteurs.Add(p);
-                        while ((n % p) == 0)
+                        int expo = 0; // Initialise l'exposant à zéro pour chaque facteur premier
+                        if ((n % p) == 0)
                         {
-                            expo++;
-                            n /= p;
+                            facteurs.Add(p);
+                            while ((n % p) == 0)
+                            {
+                                expo++;
+                                n /= p;
+                            }
+                            exposants.Add(expo);
                         }
-                        exposants.Add(expo);
+                        while (p <= n && tab[++p] != true) { }
                     }
-                    while (p <= n && tab[++p] != true) { }
                 }
             }
 
@@ -165,6 +119,7 @@ namespace NbPremier
             return (facteurs, exposants);
         }
 
+        // Indicateur d'Euler
         public static int IndicateurEuler(int n)
         {
             bool[] tab = CribleEratosthene(n);
@@ -181,8 +136,7 @@ namespace NbPremier
             return resultat;
         }
 
-
-        // Exercice exponentiation modulaire
+        // Exponentiation modulaire
         public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
         {
             // Le résultat est toujours 0 si le modulo est 1.
@@ -194,19 +148,19 @@ namespace NbPremier
             long resultat = 1;
             baseValeur = baseValeur % modulo;
 
-            while (exposant > 0)
+            string exposantBinaire = Convert.ToString(exposant, 2);
+
+            for (int i = exposantBinaire.Length - 1; i >= 0; i--)
             {
-                // Si exposant impair
-                if (exposant % 2 == 1)
+                if (exposantBinaire[i] == '1')
                 {
                     resultat = (resultat * baseValeur) % modulo;
                 }
-
                 baseValeur = (baseValeur * baseValeur) % modulo;
-                exposant /= 2;
             }
 
             return resultat;
         }
+
     }
 }
