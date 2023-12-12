@@ -36,7 +36,7 @@ namespace NbPremier
                 Console.WriteLine("Clé de chiffrement invalide.");
             }
         }
-
+        
         // Méthode pour vérifier la validité de la clé de chiffrement
         public bool Valid(int p, int q)
         {
@@ -68,6 +68,7 @@ namespace NbPremier
             }
             return false;
         }
+        
 
         public bool ValidPremierEntreEux(int z, int e)
         {

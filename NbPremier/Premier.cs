@@ -27,7 +27,7 @@ namespace NbPremier
             // On biffe les multiples de 2, puis 3...
             for (int i = 2; i <= Math.Sqrt(n); i++)
             {
-                // Si le nombre actuel n'as pas été biffé
+                // Si le nombre actuel n'a pas été biffé
                 if (listeBiffe[i])
                 {
                     for (int j = i * i; j <= n; j += i)
@@ -37,7 +37,13 @@ namespace NbPremier
                 }
             }
 
-            // Affichage des nombres premiers
+            return listeBiffe;
+        }
+
+        public static void AfficherNombresPremiersAvecCribleEratosthene(int n)
+        {
+            bool[] listeBiffe = CribleEratosthene(n);
+
             Console.WriteLine("Nombres premiers jusqu'à " + n + ":");
             for (int i = 2; i <= n; i++)
             {
@@ -47,11 +53,6 @@ namespace NbPremier
                 }
             }
             Console.WriteLine("\n");
-
-            /*Jeux de test.Les nombres premiers inférieurs à 100 sont:
-             * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.*/
-
-            return listeBiffe;
         }
 
         public static bool nbPremierEntreEux(int a, int b)
