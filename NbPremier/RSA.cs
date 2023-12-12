@@ -57,8 +57,6 @@ namespace NbPremier
 
             return compteur == 2;
         }
-        
-
 
         private bool IsValidPublicKey(int z, int e)
         {
