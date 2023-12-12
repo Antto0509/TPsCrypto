@@ -112,6 +112,10 @@ namespace NbPremier
             RSA rsa3 = new RSA(4, 11, 3); // Ne devrait pas être créé
             RSA rsa4 = new RSA(3, 11, 40); // Ne devrait pas être créé
 
+            RSA rsa5 = new RSA(61, 53, 17);
+            rsa5.AfficherCleChiffrement();
+            rsa5.AfficherCleDechiffrement();
+
             Console.WriteLine("Tests terminés.");
             
             Console.ReadLine();
