@@ -8,15 +8,15 @@ namespace NbPremier
 {
     internal class RSA
     {
-        private long p;
-        private long q;
-        private long e;
-        private long n;
-        private long d;
-        private long indicateurEuler;
+        private int p;
+        private int q;
+        private int e;
+        private int n;
+        private int d;
+        private int indicateurEuler;
 
         // Constructeur
-        public RSA(long p, long q, long e)
+        public RSA(int p, int q, int e)
         {
             // Vérification de la validité de la clé de chiffrement et de la clé publique
             if (!EstCleChiffrementValide(p, q) || !EstClePubliqueValide(p, q, e))
@@ -37,13 +37,13 @@ namespace NbPremier
         public long CleDechiffrement => d;
 
         // Méthode pour vérifier la validité de la clé de chiffrement
-        private bool EstCleChiffrementValide(long p, long q)
+        private bool EstCleChiffrementValide(int p, int q)
         {
             int compteur = 0;
             bool[] tab;
 
             // Utilisation du crible d'Ératosthène pour trouver les nombres premiers jusqu'au maximum de p et q
-            long max = Math.Max(p, q);
+            int max = Math.Max(p, q);
             tab = Premier.CribleEratosthene(max);
 
             // Vérification que p et q sont des nombres premiers distincts
@@ -59,21 +59,21 @@ namespace NbPremier
         }
 
         // Méthode pour vérifier la validité de la clé publique
-        private bool EstClePubliqueValide(long p, long q, long e)
+        private bool EstClePubliqueValide(int p, int q, int e)
         {
             // Vérification que e est premier avec l'indicateur Euler
             return Premier.nbPremierEntreEux(CalculerIndicateurEuler(p, q), e);
         }
 
         // Méthode pour calculer la clé de déchiffrement d
-        private long CalculerD()
+        private int CalculerD()
         {
-            long dCalcule = (long)Premier.PuissanceModulo(e, indicateurEuler - 1, n);
+            int dCalcule = (int)Premier.PuissanceModulo(e, indicateurEuler - 1, n);
             return (dCalcule < 0) ? dCalcule + n : dCalcule;
         }
 
         // Méthode pour calculer l'indicateur Euler
-        private long CalculerIndicateurEuler(long p, long q)
+        private int CalculerIndicateurEuler(int p, int q)
         {
             return Premier.IndicateurEuler(p) * Premier.IndicateurEuler(q);
         }
