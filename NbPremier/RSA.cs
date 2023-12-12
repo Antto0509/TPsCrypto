@@ -8,46 +8,46 @@ namespace NbPremier
 {
     internal class RSA
     {
-        private int p;
-        private int q;
-        private int e;
-        private int n;
-        private int d;
-        private int indicateurEuler;
+        private long p;
+        private long q;
+        private long e;
+        private long n;
+        private long d;
+        private long indicateurEuler;
 
         // Constructeur
-        public RSA(int p, int q, int e)
+        public RSA(long p, long q, long e)
         {
+            // Vérification de la validité de la clé de chiffrement et de la clé publique
+            if (!EstCleChiffrementValide(p, q) || !EstClePubliqueValide(p, q, e))
+            {
+                throw new ArgumentException("Clé de chiffrement invalide.");
+            }
+
+            // Initialisation des attributs
             this.p = p;
             this.q = q;
             this.e = e;
             n = p * q;
-
-            if (!IsValidKey(p, q))
-            {
-                throw new ArgumentException("Clé de chiffrement invalide.");
-            }
-
             indicateurEuler = CalculerIndicateurEuler(p, q);
-
-            if (!IsValidPublicKey(indicateurEuler, e))
-            {
-                throw new ArgumentException("Clé de chiffrement invalide.");
-            }
-
             d = CalculerD();
         }
-        
+
+        // Propriété publique pour accéder à d
+        public long CleDechiffrement => d;
+
         // Méthode pour vérifier la validité de la clé de chiffrement
-        private bool IsValidKey(int p, int q)
+        private bool EstCleChiffrementValide(long p, long q)
         {
             int compteur = 0;
             bool[] tab;
 
-            int max = Math.Max(p, q);
+            // Utilisation du crible d'Ératosthène pour trouver les nombres premiers jusqu'au maximum de p et q
+            long max = Math.Max(p, q);
             tab = Premier.CribleEratosthene(max);
 
-            for (int i = 2; i <= max; i++)
+            // Vérification que p et q sont des nombres premiers distincts
+            for (long i = 2; i <= max; i++)
             {
                 if (tab[i] && (i == p || i == q))
                 {
@@ -58,33 +58,22 @@ namespace NbPremier
             return compteur == 2;
         }
 
-        private bool IsValidPublicKey(int z, int e)
+        // Méthode pour vérifier la validité de la clé publique
+        private bool EstClePubliqueValide(long p, long q, long e)
         {
-            return Premier.nbPremierEntreEux(z, e);
+            // Vérification que e est premier avec l'indicateur Euler
+            return Premier.nbPremierEntreEux(CalculerIndicateurEuler(p, q), e);
         }
 
         // Méthode pour calculer la clé de déchiffrement d
-        private int CalculerD()
+        private long CalculerD()
         {
-            int dCalcule = (int)Premier.PuissanceModulo(e, indicateurEuler - 1, n);
+            long dCalcule = (long)Premier.PuissanceModulo(e, indicateurEuler - 1, n);
             return (dCalcule < 0) ? dCalcule + n : dCalcule;
         }
 
-        // Méthode pour afficher la clé de déchiffrement
-        public void AfficherCleDechiffrement()
-        {
-            if (d != 0)
-            {
-                Console.WriteLine($"Clé de déchiffrement : {d}");
-            }
-            else
-            {
-                Console.WriteLine("Clé de déchiffrement non calculée.");
-            }
-        }
-
         // Méthode pour calculer l'indicateur Euler
-        private int CalculerIndicateurEuler(int p, int q)
+        private long CalculerIndicateurEuler(long p, long q)
         {
             return Premier.IndicateurEuler(p) * Premier.IndicateurEuler(q);
         }
