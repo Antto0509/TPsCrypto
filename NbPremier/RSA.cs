@@ -18,12 +18,13 @@ namespace NbPremier
         // Constructeur
         public RSA(int p, int q, int e)
         {
+            this.p = p;
+            this.q = q;
+            this.e = e;
+            n = p * q;
+
             if (Valid(p, q))
             {
-                this.p = p;
-                this.q = q;
-                this.e = e;
-                n = p * q;
                 z = Premier.IndicateurEuler(n);
                 if (ValidPremierEntreEux(z, e))
                 {
