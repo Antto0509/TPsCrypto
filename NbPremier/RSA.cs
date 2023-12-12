@@ -44,16 +44,10 @@ namespace NbPremier
             int compteur = 0;
             bool[] tab;
 
-            if (p > q)
-            {
-                tab = Premier.CribleEratosthene(p);
-            }
-            else
-            {
-                tab = Premier.CribleEratosthene(q);
-            }
+            int max = Math.Max(p, q);
+            tab = Premier.CribleEratosthene(max);
 
-            for (int i = 2; i <= n; i++)
+            for (int i = 2; i <= max; i++)
             {
                 if (tab[i] && (i == p || i == q))
                 {
@@ -63,6 +57,7 @@ namespace NbPremier
 
             return compteur == 2;
         }
+
 
         private bool IsValidPublicKey(int z, int e)
         {
