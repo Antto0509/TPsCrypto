@@ -55,7 +55,7 @@ namespace NbPremier
             {
                 if (tab[i])
                 {
-                    if (i==p || i == q)
+                    if (i == p || i == q)
                     {
                         compteur++;
                     }
