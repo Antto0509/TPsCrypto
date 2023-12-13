@@ -138,24 +138,25 @@ namespace NbPremier
         // Exponentiation modulaire
         public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
         {
+            long localBasValeur, localExposant, localModulo
             // Le résultat est toujours 0 si le modulo est 1.
-            if (modulo == 1)
+            if (localModulo == 1)
             {
                 return 0;
             }
 
             long resultat = 1;
-            baseValeur = baseValeur % modulo;
+            int baseValeur = localBaseValeur % localModulo;
 
-            string exposantBinaire = Convert.ToString(exposant, 2);
+            string exposantBinaire = Convert.ToString(localExposant, 2);
 
             for (int i = exposantBinaire.Length - 1; i >= 0; i--)
             {
                 if (exposantBinaire[i] == '1')
                 {
-                    resultat = (resultat * baseValeur) % modulo;
+                    resultat = (resultat * baseValeur) % localModulo;
                 }
-                baseValeur = (baseValeur * baseValeur) % modulo;
+                baseValeur = (baseValeur * baseValeur) % localModulo;
             }
 
             return resultat;
