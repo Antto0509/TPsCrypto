@@ -11,10 +11,11 @@ namespace NbPremier
         // Crible d'Eratosthène
         public static bool[] CribleEratosthene(int n)
         {
+            int localN = n;
             // On initialise le tableau de booléens des nombres premiers
-            bool[] listeBiffe = new bool[n + 1];
+            bool[] listeBiffe = new bool[localN + 1];
 
-            for (int i = 2; i <= n; i++)
+            for (int i = 2; i <= localN; i++)
             {
                 listeBiffe[i] = true;
             }
@@ -23,12 +24,12 @@ namespace NbPremier
             listeBiffe[1] = false;
 
             // On biffe les multiples de 2, puis 3...
-            for (int i = 2; i <= Math.Sqrt(n); i++)
+            for (int i = 2; i <= Math.Sqrt(localN); i++)
             {
                 // Si le nombre actuel n'a pas été biffé
                 if (listeBiffe[i])
                 {
-                    for (int j = i * i; j <= n; j += i)
+                    for (int j = i * i; j <= localN; j += i)
                     {
                         listeBiffe[j] = false;
                     }
@@ -41,10 +42,11 @@ namespace NbPremier
         // Affiche crible d'Eratosthène
         public static void AfficherCribleEratosthene(int n)
         {
-            bool[] listeBiffe = CribleEratosthene(n);
+            int localN = n;
+            bool[] listeBiffe = CribleEratosthene(localN);
 
-            Console.WriteLine("Nombres premiers jusqu'à " + n + ":");
-            for (int i = 2; i <= n; i++)
+            Console.WriteLine("Nombres premiers jusqu'à " + localN + ":");
+            for (int i = 2; i <= localN; i++)
             {
                 if (listeBiffe[i])
                 {
@@ -57,53 +59,55 @@ namespace NbPremier
         // Premiers entre eux
         public static bool PremierEntreEux(int a, int b)
         {
+            int localA = a, localB = b;
             while (b != 0)
             {
-                int temp = b;
-                b = a % b;
-                a = temp;
+                int temp = localB;
+                localB = localA % localB;
+                localA = temp;
             }
 
-            return a == 1;
+            return localA == 1;
         }
 
         // Décomposition en facteurs premiers
         public static (List<int>, List<int>) DFP(int n) // Décomposition en facteurs premiers
         {
+            int localN = n;
             List<int> facteurs = new List<int>();
             List<int> exposants = new List<int>();
 
-            bool[] tab = CribleEratosthene(n);
+            bool[] tab = CribleEratosthene(localN);
             int p = 2;
 
-            if (n == 1)
+            if (localN == 1)
             {
                 facteurs.Add(1);
                 exposants.Add(1);
             }
             else
             {
-                if (tab[n] == true)
+                if (tab[localN] == true)
                 {
-                    facteurs.Add(n);
+                    facteurs.Add(localN);
                     exposants.Add(1);
                 }
                 else
                 {
-                    while (n != 1)
+                    while (localN != 1)
                     {
                         int expo = 0; // Initialise l'exposant à zéro pour chaque facteur premier
-                        if ((n % p) == 0)
+                        if ((localN % p) == 0)
                         {
                             facteurs.Add(p);
-                            while ((n % p) == 0)
+                            while ((localN % p) == 0)
                             {
                                 expo++;
-                                n /= p;
+                                localN /= p;
                             }
                             exposants.Add(expo);
                         }
-                        while (p <= n && tab[++p] != true) { }
+                        while (p <= localN && tab[++p] != true) { }
                     }
                 }
             }
@@ -121,7 +125,8 @@ namespace NbPremier
         // Indicateur d'Euler
         public static int IndicateurEuler(int n)
         {
-            bool[] tab = CribleEratosthene(n);
+            int localN = n;
+            bool[] tab = CribleEratosthene(localN);
             List<int> facteurs = DFP(n).Item1;
             List<int> exposants = DFP(n).Item2;
             int resultat = 1;  // Initialiser le résultat à 1
@@ -131,14 +136,14 @@ namespace NbPremier
                 resultat *= (int)Math.Pow(facteurs[i], exposants[i] - 1) * (facteurs[i] - 1);
             }
 
-            Console.WriteLine($"phi({n}) = {resultat}\n");
+            Console.WriteLine($"phi({localN}) = {resultat}\n");
             return resultat;
         }
 
         // Exponentiation modulaire
         public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
         {
-            long localBasValeur, localExposant, localModulo
+            long localBaseValeur = baseValeur, localExposant = exposant, localModulo = modulo;
             // Le résultat est toujours 0 si le modulo est 1.
             if (localModulo == 1)
             {
