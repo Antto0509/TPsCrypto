@@ -47,7 +47,7 @@ namespace NbPremier
         }
 
         // Méthode pour calculer la clé de déchiffrement d
-        private int CalculerD(int e, int z)
+        private static int CalculerD(int e, int z)
         {
             int dCalcule = (int)Premier.PuissanceModulo(e, Premier.IndicateurEuler(z) - 1, z);
             return (dCalcule < 0) ? dCalcule + z : dCalcule;
