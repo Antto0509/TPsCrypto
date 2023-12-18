@@ -151,7 +151,7 @@ namespace NbPremier
             }
 
             long resultat = 1;
-            int baseValeur = localBaseValeur % localModulo;
+            long baseValeurModif = localBaseValeur % localModulo;
 
             string exposantBinaire = Convert.ToString(localExposant, 2);
 
@@ -159,9 +159,9 @@ namespace NbPremier
             {
                 if (exposantBinaire[i] == '1')
                 {
-                    resultat = (resultat * baseValeur) % localModulo;
+                    resultat = (resultat * baseValeurModif) % localModulo;
                 }
-                baseValeur = (baseValeur * baseValeur) % localModulo;
+                baseValeur = (baseValeur * baseValeurModif) % localModulo;
             }
 
             return resultat;
