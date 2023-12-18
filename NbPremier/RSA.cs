@@ -66,7 +66,7 @@ namespace NbPremier
         }
 
         // Méthode de chiffrement d'entier
-        public int Chiffrer(int message)
+        public int ChiffrerEntier(int message)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace NbPremier
         }
 
         // Méthode de déchiffrement d'entier
-        public int Dechiffrer(int messageChiffre)
+        public int DechiffrerEntier(int messageChiffre)
         {
             try
             {

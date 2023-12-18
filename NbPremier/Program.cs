@@ -43,16 +43,16 @@ namespace NbPremier
             RSA rsa6 = new RSA(47, 71, 79);
 
             // Chiffrement du message
-            Console.WriteLine($"Le message {61} est chiffré en {rsa6.Chiffrer(61)}.\n");
+            Console.WriteLine($"Le message {61} est chiffré en {rsa6.ChiffrerEntier(61)}.\n");
 
             // Déchiffrement du message chiffré
-            Console.WriteLine($"Le message déchiffré de {rsa6.Chiffrer(61)} est {rsa6.Dechiffrer(rsa6.Chiffrer(61))}.\n");
+            Console.WriteLine($"Le message déchiffré de {rsa6.ChiffrerEntier(61)} est {rsa6.DechiffrerEntier(rsa6.ChiffrerEntier(61))}.\n");
 
             // Chiffrement du message
-            Console.WriteLine($"Le message {215} est chiffré en {rsa6.Chiffrer(215)}.\n");
+            Console.WriteLine($"Le message {215} est chiffré en {rsa6.ChiffrerEntier(215)}.\n");
 
             // Déchiffrement du message chiffré
-            Console.WriteLine($"Le message déchiffré de {rsa6.Chiffrer(215)} est {rsa6.Dechiffrer(rsa6.Chiffrer(215))}.\n");
+            Console.WriteLine($"Le message déchiffré de {rsa6.ChiffrerEntier(215)} est {rsa6.DechiffrerEntier(rsa6.ChiffrerEntier(215))}.\n");
 
             Console.WriteLine("Tests terminés.");
             
