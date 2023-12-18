@@ -56,11 +56,15 @@ namespace NbPremier
             Console.WriteLine($"Le message déchiffré de {rsa6.ChiffrerEntier(215)} est {rsa6.DechiffrerEntier(rsa6.ChiffrerEntier(215))}.\n");
 
             // Appel de la méthode ChiffrerChaine
+            Chaine maChaine = new Chaine();
+
             string messageAChiffrer = "FLORENCE";
-            string messageChiffre = rsa6.ChiffrerChaine(messageAChiffrer);
+            string messageChiffre = maChaine.ChiffrerChaine(messageAChiffrer);
 
             // Affichage du résultat
             Console.WriteLine($"Le message '{messageAChiffrer}' est chiffré en {messageChiffre}.\n");
+
+            Console.ReadLine();
         }	
     }
 }
