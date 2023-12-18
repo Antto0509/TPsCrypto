@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace NbPremier
 {
@@ -60,6 +60,17 @@ namespace NbPremier
 
             // Affichage du résultat
             Console.WriteLine($"Le message '{"FLORENCE"}' est chiffré en {maChaine.ChiffrerChaine("FLORENCE")}.\n");
+
+            // Découpage en blocs
+            List<int> blocs = Chaine.DecouperEnBlocs("FLORENCE", 3);
+
+            // Affichage du découpage
+            Console.WriteLine("Découpé en blocs :");
+            foreach (int bloc in blocs)
+            {
+                Console.Write(bloc + " ");
+            }
+
 
             // Définition d'un nouvel objet
             Chaine viveUnix = new Chaine();
