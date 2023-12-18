@@ -55,14 +55,17 @@ namespace NbPremier
             // Déchiffrement du message chiffré
             Console.WriteLine($"Le message déchiffré de {rsa6.ChiffrerEntier(215)} est {rsa6.DechiffrerEntier(rsa6.ChiffrerEntier(215))}.\n");
 
-            // Appel de la méthode ChiffrerChaine
+            // Définition d'un nouvel objet
             Chaine maChaine = new Chaine();
 
-            string messageAChiffrer = "FLORENCE";
-            string messageChiffre = maChaine.ChiffrerChaine(messageAChiffrer);
+            // Affichage du résultat
+            Console.WriteLine($"Le message '{"FLORENCE"}' est chiffré en {maChaine.ChiffrerChaine("FLORENCE")}.\n");
+
+            // Définition d'un nouvel objet
+            Chaine viveUnix = new Chaine();
 
             // Affichage du résultat
-            Console.WriteLine($"Le message '{messageAChiffrer}' est chiffré en {messageChiffre}.\n");
+            Console.WriteLine($"Le message '{"VIVE UNIX"}' est chiffré en {viveUnix.ChiffrerChaine("VIVE UNIX")}.\n");
 
             Console.ReadLine();
         }	
