@@ -161,7 +161,7 @@ namespace NbPremier
                 {
                     resultat = (resultat * baseValeurModif) % localModulo;
                 }
-                baseValeur = (baseValeur * baseValeurModif) % localModulo;
+                baseValeurModif = (baseValeurModif * baseValeurModif) % localModulo;
             }
 
             return resultat;
