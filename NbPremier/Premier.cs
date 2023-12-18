@@ -60,7 +60,7 @@ namespace NbPremier
         public static bool PremierEntreEux(int a, int b)
         {
             int localA = a, localB = b;
-            while (b != 0)
+            while (localB != 0)
             {
                 int temp = localB;
                 localB = localA % localB;
