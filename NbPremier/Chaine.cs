@@ -22,12 +22,12 @@ namespace NbPremier
                 {
                     if (caractere == ' ')
                     {
-                        messageChiffre += "00 ";
+                        messageChiffre += "00";
                     }
                     else if (caractere >= 'A' && caractere <= 'Z')
                     {
                         int valeur = caractere - 'A' + 1;
-                        messageChiffre += valeur.ToString("D2") + " ";
+                        messageChiffre += valeur.ToString("D2");
                     }
                     else
                     {
