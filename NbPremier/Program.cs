@@ -71,7 +71,6 @@ namespace NbPremier
                 Console.Write(bloc + " ");
             }
 
-
             // Définition d'un nouvel objet
             Chaine viveUnix = new Chaine();
 
