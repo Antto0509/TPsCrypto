@@ -82,7 +82,6 @@ namespace NbPremier
             catch (Exception ex)
             {
                 Console.WriteLine($"Erreur lors du chiffrement : {ex.Message}");
-                // Vous pouvez choisir de lever à nouveau l'exception ou de prendre d'autres mesures.
                 return -1; // Valeur indiquant une erreur
             }
         }
@@ -106,7 +105,6 @@ namespace NbPremier
             catch (Exception ex)
             {
                 Console.WriteLine($"Erreur lors du déchiffrement : {ex.Message}");
-                // Vous pouvez choisir de lever à nouveau l'exception ou de prendre d'autres mesures.
                 return -1; // Valeur indiquant une erreur
             }
         }
