@@ -62,7 +62,7 @@ namespace NbPremier
             Console.WriteLine($"Le message '{"FLORENCE"}' est chiffré en {maChaine.ChiffrerChaine("FLORENCE")}.\n");
 
             // Découpage en blocs
-            List<int> blocs = Chaine.DecouperEnBlocs("FLORENCE", 3);
+            List<int> blocs = Chaine.DecouperEnBlocs(maChaine.ChiffrerChaine("FLORENCE"), 3);
 
             // Affichage du découpage
             Console.WriteLine("Découpé en blocs :");
@@ -70,12 +70,17 @@ namespace NbPremier
             {
                 Console.Write(bloc + " ");
             }
+            Console.WriteLine("\n");
+
+            Console.WriteLine($"Traduction en chaine de caractères : {Chaine.ConvertirListeEnChaine(blocs, 3)}.\n");
+
+            Console.WriteLine($"Traduction en chaine de caractères claire : {Chaine.DechiffrerChaine(Chaine.ConvertirListeEnChaine(blocs, 3))}.\n");
 
             // Définition d'un nouvel objet
-            Chaine viveUnix = new Chaine();
+            /*Chaine viveUnix = new Chaine();
 
             // Affichage du résultat
-            Console.WriteLine($"Le message '{"VIVE UNIX"}' est chiffré en {viveUnix.ChiffrerChaine("VIVE UNIX")}.\n");
+            Console.WriteLine($"Le message '{"VIVE UNIX"}' est chiffré en {viveUnix.ChiffrerChaine("VIVE UNIX")}.\n");*/
 
             Console.ReadLine();
         }	
