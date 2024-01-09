@@ -72,7 +72,7 @@ namespace NbPremier
             return resultat.ToString();
         }
 
-        public static string DechiffrerChaine(string chaineChiffree)
+        public string DechiffrerChaine(string chaineChiffree)
         {
             StringBuilder messageClaire = new StringBuilder();
 

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
 
 namespace NbPremier
 {
@@ -108,5 +111,40 @@ namespace NbPremier
                 return -1; // Valeur indiquant une erreur
             }
         }
+
+        // Méthode pour chiffrer une chaine
+        public List<int> ChiffrerChaine(string message)
+        {
+            Chaine chaine = new Chaine();
+
+            List<int> blocsChiffres = Chaine.DecouperEnBlocs(chaine.ChiffrerChaine(message), 3);
+
+            for (int i = 0; i < blocsChiffres.Count; i++)
+            {
+                int blocChiffre = ChiffrerEntier(blocsChiffres[i]);
+                blocsChiffres[i] = blocChiffre;
+            }
+
+            return blocsChiffres;
+        }
+
+        public string DechiffrerListeBlocs(List<int> blocsChiffres)
+        {
+            Chaine chaine = new Chaine();
+
+            List<int> blocsDechiffres = new List<int>();
+            foreach (int blocChiffre in blocsChiffres)
+            {
+                int blocDechiffre = DechiffrerEntier(blocChiffre);
+                blocsDechiffres.Add(blocDechiffre);
+            }
+
+            string chaineDechiffree = Chaine.ConvertirListeEnChaine(blocsDechiffres, 3);
+
+            string messageDechiffre = chaine.DechiffrerChaine(chaineDechiffree);
+
+            return messageDechiffre;
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace NbPremier
 {
@@ -55,6 +56,9 @@ namespace NbPremier
             // Déchiffrement du message chiffré
             Console.WriteLine($"Le message déchiffré de {rsa6.ChiffrerEntier(215)} est {rsa6.DechiffrerEntier(rsa6.ChiffrerEntier(215))}.\n");
 
+            // Tests de la classe Chaine
+            Console.WriteLine("\nTEST DE LA CLASSE CHAINE :\n");
+
             // Définition d'un nouvel objet
             Chaine maChaine = new Chaine();
 
@@ -72,15 +76,42 @@ namespace NbPremier
             }
             Console.WriteLine("\n");
 
+            // Traduction en chaine
             Console.WriteLine($"Traduction en chaine de caractères : {Chaine.ConvertirListeEnChaine(blocs, 3)}.\n");
 
-            Console.WriteLine($"Traduction en chaine de caractères claire : {Chaine.DechiffrerChaine(Chaine.ConvertirListeEnChaine(blocs, 3))}.\n");
+            // Traduction en chaine claire
+            Console.WriteLine($"Traduction en chaine de caractères claire : {maChaine.DechiffrerChaine(Chaine.ConvertirListeEnChaine(blocs, 3))}.\n");
 
-            // Définition d'un nouvel objet
-            /*Chaine viveUnix = new Chaine();
+            // Tests des classes RSA et Chaine
+            Console.WriteLine("\nTEST DES CLASSES RSA ET CHAINE :\n");
 
-            // Affichage du résultat
-            Console.WriteLine($"Le message '{"VIVE UNIX"}' est chiffré en {viveUnix.ChiffrerChaine("VIVE UNIX")}.\n");*/
+            RSA florence = new RSA(47, 71, 79);
+            List<int> blocsChiffres = florence.ChiffrerChaine("FLORENCE");
+
+            // Affichage des blocs chiffrés
+            Console.WriteLine("Chiffrement de la chaine :");
+            foreach (int blocChiffre in blocsChiffres)
+            {
+                Console.Write($"{blocChiffre} ");
+            }
+            Console.WriteLine("\n");
+
+            // Déchiffrage des blocs
+            Console.WriteLine($"Déchiffrage du message : {florence.DechiffrerListeBlocs(blocsChiffres)}");
+
+            RSA viveUnix = new RSA(47, 71, 79);
+            blocsChiffres = viveUnix.ChiffrerChaine("VIVE UNIX ET BONNE ANNEE");
+
+            // Affichage des blocs chiffrés
+            Console.WriteLine("Chiffrement de la chaine :");
+            foreach (int blocChiffre in blocsChiffres)
+            {
+                Console.Write($"{blocChiffre} ");
+            }
+            Console.WriteLine("\n");
+
+            // Déchiffrage des blocs
+            Console.WriteLine($"Déchiffrage du message : {viveUnix.DechiffrerListeBlocs(blocsChiffres)}");
 
             Console.ReadLine();
         }	
