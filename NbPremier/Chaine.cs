@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace NbPremier
 {
     internal class Chaine
     {
+        // Méthode de chiffrement d'une chaîne de caractères
         public string ChiffrerChaine(string message)
         {
             try
@@ -45,6 +45,7 @@ namespace NbPremier
             }
         }
 
+        // Méthode de découpage d'une chaîne chiffrée en blocs de chiffres
         public static List<int> DecouperEnBlocs(string chaineChiffre, int longueurBloc)
         {
             List<int> blocs = new List<int>();
@@ -59,6 +60,7 @@ namespace NbPremier
             return blocs;
         }
 
+        // Méthode de conversion d'une liste d'entiers en une chaîne de caractères
         public static string ConvertirListeEnChaine(List<int> listeEntiers, int longueurSousChaine)
         {
             StringBuilder resultat = new StringBuilder();
@@ -72,6 +74,7 @@ namespace NbPremier
             return resultat.ToString();
         }
 
+        // Méthode de déchiffrement d'une chaîne chiffrée
         public string DechiffrerChaine(string chaineChiffree)
         {
             StringBuilder messageClaire = new StringBuilder();
@@ -93,6 +96,5 @@ namespace NbPremier
 
             return messageClaire.ToString();
         }
-
     }
 }

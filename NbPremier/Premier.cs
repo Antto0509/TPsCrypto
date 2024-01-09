@@ -5,10 +5,7 @@ namespace NbPremier
 {
     internal class Premier
     {
-        // Réalisé par Antoine PISSON et Antoine COUTREEL
-        // Groupe : INFO2 G2
-
-        // Crible d'Eratosthène
+        // Méthode de génération du crible d'Eratosthène jusqu'à un nombre donné
         public static bool[] CribleEratosthene(int n)
         {
             int localN = n;
@@ -39,7 +36,7 @@ namespace NbPremier
             return listeBiffe;
         }
 
-        // Affiche crible d'Eratosthène
+        // Méthode d'affichage du crible d'Eratosthène jusqu'à un nombre donné
         public static void AfficherCribleEratosthene(int n)
         {
             int localN = n;
@@ -56,7 +53,7 @@ namespace NbPremier
             Console.WriteLine("\n");
         }
 
-        // Premiers entre eux
+        // Méthode de vérification si deux nombres sont premiers entre eux
         public static bool PremierEntreEux(int a, int b)
         {
             int localA = a, localB = b;
@@ -70,8 +67,8 @@ namespace NbPremier
             return localA == 1;
         }
 
-        // Décomposition en facteurs premiers
-        public static (List<int>, List<int>) DFP(int n) // Décomposition en facteurs premiers
+        // Méthode de décomposition d'un nombre en facteurs premiers
+        public static (List<int>, List<int>) DFP(int n)
         {
             int localN = n;
             List<int> facteurs = new List<int>();
@@ -122,7 +119,7 @@ namespace NbPremier
             return (facteurs, exposants);
         }
 
-        // Indicateur d'Euler
+        // Méthode de calcul de l'indicateur d'Euler
         public static int IndicateurEuler(int n)
         {
             int localN = n;
@@ -140,7 +137,7 @@ namespace NbPremier
             return resultat;
         }
 
-        // Exponentiation modulaire
+        // Méthode d'exponentiation modulaire
         public static long PuissanceModulo(long baseValeur, long exposant, long modulo)
         {
             long localBaseValeur = baseValeur, localExposant = exposant, localModulo = modulo;
@@ -166,6 +163,5 @@ namespace NbPremier
 
             return resultat;
         }
-
     }
 }
